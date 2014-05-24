@@ -11,41 +11,43 @@ It also contains a simple web app that uses this API.
 Sundowner uses `PyEphem <http://rhodesmill.org/pyephem/>`_ to calculate
 astronomical parameters.
 
-Sunrise and sunset times are calculated according to United States Naval
-Observatory specifications atmospheric refraction is estimated by setting
+Sunrise and sunset times are calculated according to the United States Naval
+Observatory specifications, whereby for dawn and dusk, atmospheric refraction is estimated by setting
 observer pressure to zero and the horizon to 34 arcminutes below the normal
 horizon.
 
-It is licensed under the MIT License.
+Civil dawn and dusk are when the sun is 6º below the horizon.
+
+Sundowner is licensed under the MIT License.
 
 Dependencies
 ============
 
 Sundowner has the following Python3 dependencies:
 
- * Flask 0.10
- * ephem 3.7
- * itsdangerous 0.24
- * Jinja2 2.7.2
- * MarkupSafe 0.23
- * Werkzeug 0.9.4
- * python-dateutil 2.2
+* Flask 0.10
+* ephem 3.7
+* itsdangerous 0.24
+* Jinja2 2.7.2
+* MarkupSafe 0.23
+* Werkzeug 0.9.4
+* python-dateutil 2.2
 
 URL endpoints
 =============
 
-Sundowner exposes the following endpoint, which expects GET requests:
+Sundowner exposes the following endpoint:
 
 * ``/api/sun``
 
 Parameters
 ----------
 
-* <lat> and <lon> are simple decimals of latitude and longitude respectively,
+* ``<lat>`` and ``<lon>`` are simple decimals of latitude and longitude respectively,
   e.g. Rothera's location is expressed as -67.57 and -68.13
-* <start> and <end> are start and end dates for the desired period, in ISO 8601
+* ``<start>`` and ``<end>`` are start and end dates for the desired period, in ISO 8601
   format (as produced by Javascript's ``.toJSON()`` method)
-* <output_type> is an optional parameter for the resulting datetimes,
+* ``<output_type>`` is an optional parameter for the resulting datetimes,
   defaulting to ``iso`` for ISO 8601 format. Alternatively, use ``js``
   for Javascript timestamp, or ``dt`` for a human-readable datetime.
 
@@ -72,12 +74,10 @@ The API returns a JSON object, as follows::
       }
     }
 
-https://github.com/eternicode/bootstrap-datepicker
-
 Acknowledgements
 ================
 
-Additionally, Sundowner uses the following components:
+Sundowner uses the following components:
 
 * Bootstrap v3.1.1 (http://getbootstrap.com)
   Licensed under the MIT License. (c) 2011-2014 Twitter, Inc
@@ -94,5 +94,6 @@ Additionally, Sundowner uses the following components:
   Licensed under the Apache 2.0 License.
 
 Full-text copies of the above licenses may be found at:
+
 * http://opensource.org/licenses/MIT
 * http://opensource.org/licenses/Apache-2.0
