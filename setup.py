@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='Sundowner',
-    version='0.1.1',
+    version='0.1.2',
     long_description=__doc__,
     packages=['sundowner'],
     include_package_data=True,
