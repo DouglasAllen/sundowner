@@ -18,15 +18,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/api/day/<lat>/<lon>/<day>', defaults={'output_type': 'js'})
-@app.route('/api/day/<lat>/<lon>/<day>/<output_type>')
-def sun_day(lat, lon, stday, output_type):
-    day = parse_date(day)
-    times = list_times(lat, lon, day, output_type)
-    lat_long = "{0},{1}".format(lat,lon)
-    output = {lat_long: {day.isoformat(): times}}
-    return jsonify(output)
-
 @app.route('/api/sun/')
 def sun():
     # Populate variables from request
@@ -51,19 +42,6 @@ def sun():
     days = [start + timedelta(days=i) for i in range(days_range)]
     times = [{'date': day.isoformat(), 'events': list_times(lat, lon, day, output_type)} for day in days]
     output = {'latlon': {'lat': lat, 'lon': lon}, 'days': times}
-    return jsonify(output)
-
-@app.route('/api/sun/<lat>/<lon>/<start_day>/<end_day>',
-            defaults={'output_type': 'js'})
-@app.route('/api/sun/<lat>/<lon>/<start_day>/<end_day>/<output_type>')
-def sun_period(lat, lon, start_day, end_day, output_type):
-    start = parse_date(start_day)
-    end = parse_date(end_day)
-    days_range = (end + timedelta(days=1) - start).days
-    days = [start + timedelta(days=i) for i in range(days_range)]
-    times = {day.isoformat(): list_times(lat, lon, day, output_type) for day in days}
-    lat_long = "{0},{1}".format(lat,lon)
-    output = {lat_long: times}
     return jsonify(output)
 
 def parse_date(day):
