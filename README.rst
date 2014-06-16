@@ -2,6 +2,9 @@
 Sundowner
 ===========
 
+.. image:: https://travis-ci.org/kenners/sundowner.svg?branch=master
+    :target: https://travis-ci.org/kenners/sundowner
+
 Sundowner is a Python3 Flask application that provides an API to return JSON
 objects containing Javascript timestamps of civil dawn, civil dusk, sunrise,
 and sunset.
