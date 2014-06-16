@@ -40,7 +40,7 @@ class SundownerTestCase(unittest.TestCase):
     enc_request_data = urllib.parse.urlencode(test_request_data)
 
     def test_api_json(self):
-        """Check we get valid JSON from the api"""
+        """Check a standard API request returns valid JSON"""
         rv = self.app.get('/api/sun/?{0}'.format(self.enc_request_data))
         try:
             jdata = json.loads(rv.data.decode('utf-8'))

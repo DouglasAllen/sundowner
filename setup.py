@@ -18,5 +18,6 @@ setup(
         'MarkupSafe>=0.23',
         'Werkzeug>=0.9.4',
         'python-dateutil>=2.2'
-    ]
+    ],
+    test_suite='sundowner.test'
 )
