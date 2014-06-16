@@ -6,7 +6,7 @@ Sundowner is a Python3 Flask application that provides an API to return JSON
 objects containing Javascript timestamps of civil dawn, civil dusk, sunrise,
 and sunset.
 
-It also contains a simple web app that uses this API.
+It also provides a simple web app that uses this API.
 
 Sundowner uses `PyEphem <http://rhodesmill.org/pyephem/>`_ to calculate
 astronomical parameters.
