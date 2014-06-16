@@ -1,3 +1,4 @@
 include *.txt
 recursive-include sundowner/templates *
 recursive-include sundowner/static *
+recursive-include sundowner/test *
