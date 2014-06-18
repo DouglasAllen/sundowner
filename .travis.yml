@@ -1,10 +1,18 @@
 language: python
 
 python:
-  - "3.4"
+- '3.4'
 
 install:
-  - "pip install ."
-  - "pip install -r .travis-requirements.txt"
+- pip install .
+- pip install -r .travis-requirements.txt
 
 script: nosetests
+
+deploy:
+  provider: pypi
+  user: kenrick
+  password:
+    secure: EBJFR27kp5DgNPu3JWofGSp8grXnPPLenxDMnBeGFBH7OehSQuBWNZQgqoITc8afyAddzvLVDNA6OFAreeBe2hYYH3alySSxtg9yzdTbFulywEYKpRBpJv9I2pp5zzaehCjdsxbLtqyCVjtDEtnI4YXKVQV3bwX+Jt/J65mE2/c=
+  on:
+    branch: master
