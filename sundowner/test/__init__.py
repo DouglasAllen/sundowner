@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Sundowner Tests
 
@@ -12,6 +11,7 @@ try:
 except ImportError:
     import json
 import urllib.parse
+
 
 class SundownerTestCase(unittest.TestCase):
 

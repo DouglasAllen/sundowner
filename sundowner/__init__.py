@@ -7,15 +7,17 @@ Webservice to provide sunrise and sunset information.
 All times are UTC. It is up to the client to convert to local time.
 """
 import ephem
-from datetime import date, datetime, tzinfo, timezone, timedelta
+from datetime import date, timezone, timedelta
 import dateutil.parser
-from flask import Flask, jsonify, abort, render_template, url_for, request
+from flask import Flask, request, render_template, jsonify
 
 app = Flask(__name__)
 
-@app.route("/")
+
+@app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/api/sun/')
 def sun():
@@ -39,9 +41,15 @@ def sun():
 
     days_range = (end + timedelta(days=1) - start).days
     days = [start + timedelta(days=i) for i in range(days_range)]
-    times = [{'date': day.isoformat(), 'events': list_times(lat, lon, day, output_type)} for day in days]
+    times = [
+        {
+            'date': day.isoformat(),
+            'events': list_times(lat, lon, day, output_type)
+        } for day in days
+    ]
     output = {'latlon': {'lat': lat, 'lon': lon}, 'days': times}
     return jsonify(output)
+
 
 def parse_date(day):
     """
@@ -51,8 +59,9 @@ def parse_date(day):
         # Wrap input in int() in case of preceeding zeros
         output = date(int(day[:4]), int(day[4:6]), int(day[6:8]))
     except ValueError or TypeError:
-        abort(500)
+        app.abort(500)
     return output
+
 
 def list_times(latitude, longitude, day, output_type):
     """
@@ -81,9 +90,13 @@ def list_times(latitude, longitude, day, output_type):
               'sunrise': ('-0:34', True),
               'sunset': ('-0:34', False),
               'civil_dusk': ('-6', False)}
-    output = {event: calculate_sunrise(location, day, events[event][0],
-                events[event][1], output_type) for event in events}
+    output = {
+        event: calculate_sunrise(
+            location, day, events[event][0], events[event][1], output_type
+        ) for event in events
+    }
     return output
+
 
 def calculate_sunrise(location, day, horizon, dawn='True', output_type='iso'):
     """
